@@ -28,6 +28,14 @@ public class RubyController : MonoBehaviour
 
         currentHealth = maxHealth;
     }
+    void Update()
+    {
+
+        if(Input.GetKeyDown(KeyCode.C))
+        {
+            Launch();
+        }
+    }
 
     // Update is called once per frame
     void FixedUpdate()
@@ -60,10 +68,7 @@ public class RubyController : MonoBehaviour
                 isInvincible = false;
         }
         
-        if(Input.GetKeyDown(KeyCode.C))
-        {
-            Launch();
-        }
+        
     }
 
     public void ChangeHealth(int amount)
