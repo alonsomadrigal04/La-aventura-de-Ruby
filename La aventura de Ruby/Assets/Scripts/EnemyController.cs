@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    public float speed = 3.0f;
+    public float speed = 12.0f;
     public bool vertical;
     public float changeTime = 3.0f;
 
+    public ParticleSystem smokeEffect;
+    
     Rigidbody2D rigidbody2D;
     float timer;
     int direction = 1;
@@ -73,7 +75,10 @@ public class EnemyController : MonoBehaviour
     {
         broken = false;
         rigidbody2D.simulated = false;
+        
         //optional if you added the fixed animation
         animator.SetTrigger("Fixed");
+        
+        smokeEffect.Stop();
     }
 }

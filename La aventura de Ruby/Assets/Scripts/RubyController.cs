@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -25,15 +25,23 @@ public class RubyController : MonoBehaviour
     {
         rigidbody2d = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-
         currentHealth = maxHealth;
     }
+
     void Update()
     {
 
         if(Input.GetKeyDown(KeyCode.C))
         {
             Launch();
+        }
+        if(Input.GetKeyDown(KeyCode.LeftShift))
+        {
+          speed=10.0f;
+        }
+        if(Input.GetKeyUp(KeyCode.LeftShift))
+        {
+         speed = 5.0f;
         }
     }
 
@@ -68,7 +76,10 @@ public class RubyController : MonoBehaviour
                 isInvincible = false;
         }
         
-        
+        if(Input.GetKeyDown(KeyCode.C))
+        {
+            Launch();
+        }
     }
 
     public void ChangeHealth(int amount)
@@ -84,7 +95,7 @@ public class RubyController : MonoBehaviour
         
         currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
         
-        Debug.Log(currentHealth + "/" + maxHealth);
+        UIHealthBar.instance.SetValue(currentHealth / (float)maxHealth);
     }
     
     void Launch()
